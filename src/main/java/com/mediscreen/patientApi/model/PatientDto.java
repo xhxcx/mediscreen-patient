@@ -3,10 +3,7 @@ package com.mediscreen.patientApi.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.sql.Timestamp;
 
 @Data
@@ -27,7 +24,7 @@ public class PatientDto {
     private Timestamp birthDate;
 
     @NotNull
-    @Min(1) @Max(1)
+    @Size(min = 1, max = 1, message = "Gender should be M or F")
     private String gender;
 
     private String address;

@@ -3,10 +3,7 @@ package com.mediscreen.patientApi.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.sql.Timestamp;
 
 @Entity
@@ -30,7 +27,7 @@ public class Patient {
     private Timestamp birthDate;
 
     @NotNull
-    @Min(1) @Max(1)
+    @Size(min = 1, max = 1, message = "Gender should be M or F")
     private String gender;
 
     private String address;

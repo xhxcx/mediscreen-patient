@@ -9,5 +9,5 @@ import java.util.List;
 public interface PatientService {
     List<PatientDto> getAllPatients();
     PatientDto getPatientById(int patientId);
-
+    PatientDto updatePatient(PatientDto patientDto);
 }
