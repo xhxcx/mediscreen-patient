@@ -62,7 +62,7 @@ public class PatientServiceTest {
     }
 
     @Test
-    public void updatePatientTest(){
+    public void savePatientTest(){
         Patient updatePatient = new Patient();
         updatePatient.setId(1);
         updatePatient.setFirstName("firstName");
@@ -73,7 +73,7 @@ public class PatientServiceTest {
         updatePatient.setPhone("updated phone");
         Mockito.when(patientRepositoryMock.save(updatePatient)).thenReturn(updatePatient);
 
-        PatientDto resultPatientDto = patientService.updatePatient(PatientMapper.INSTANCE.mapToDto(updatePatient));
+        PatientDto resultPatientDto = patientService.savePatient(PatientMapper.INSTANCE.mapToDto(updatePatient));
 
         Assert.assertEquals("updated phone", resultPatientDto.getPhone());
         Assert.assertEquals(patient.getId(), resultPatientDto.getId());

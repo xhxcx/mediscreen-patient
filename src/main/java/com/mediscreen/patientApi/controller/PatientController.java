@@ -39,6 +39,12 @@ public class PatientController {
     @PutMapping(value = "/{id}")
     public ResponseEntity<PatientDto> updatePatient(@Valid @RequestBody PatientDto patientDto){
         LOGGER.info("PUT /updatePatient patientId = " + patientDto.getId());
-        return new ResponseEntity<>(patientService.updatePatient(patientDto), HttpStatus.OK);
+        return new ResponseEntity<>(patientService.savePatient(patientDto), HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/")
+    public ResponseEntity<PatientDto> createPatient(@Valid @RequestBody PatientDto patientDto){
+        LOGGER.info("POST /createPatient patient full name = " + patientDto.getFirstName() + " - " + patientDto.getLastName());
+        return new ResponseEntity<>(patientService.savePatient(patientDto), HttpStatus.CREATED);
     }
 }

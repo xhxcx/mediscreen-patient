@@ -27,7 +27,7 @@ public class PatientServiceImpl implements PatientService{
     }
 
     @Override
-    public PatientDto updatePatient(@Valid PatientDto patientDto) {
+    public PatientDto savePatient(@Valid PatientDto patientDto) {
         Patient patientToUpdate = PatientMapper.INSTANCE.mapToEntity(patientDto);
         return PatientMapper.INSTANCE.mapToDto(patientRepository.save(patientToUpdate));
     }
