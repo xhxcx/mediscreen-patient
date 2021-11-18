@@ -14,9 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.Month;
+import java.time.LocalDate;
 import java.util.Collections;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -41,7 +39,7 @@ public class PatientControllerTest {
         patientDto.setId(1);
         patientDto.setFirstName("firstName");
         patientDto.setLastName("lastName");
-        patientDto.setBirthDate(Timestamp.valueOf(LocalDateTime.of(2021, Month.NOVEMBER, 15, 10,30)));
+        patientDto.setBirthDate(LocalDate.of(2021, 11, 15));
         patientDto.setGender("X");
         patientDto.setAddress("address");
         patientDto.setPhone("phone");
@@ -86,7 +84,7 @@ public class PatientControllerTest {
         updatedPatient.setId(1);
         updatedPatient.setFirstName("firstName");
         updatedPatient.setLastName("lastName");
-        updatedPatient.setBirthDate(Timestamp.valueOf(LocalDateTime.of(2021, Month.NOVEMBER, 15, 10,30)));
+        updatedPatient.setBirthDate(LocalDate.of(2021, 11, 15));
         updatedPatient.setGender("X");
         updatedPatient.setAddress("new address");
         updatedPatient.setPhone("phone");
@@ -109,7 +107,7 @@ public class PatientControllerTest {
         newPatient.setId(100);
         newPatient.setFirstName("new");
         newPatient.setLastName("Patient");
-        newPatient.setBirthDate(Timestamp.valueOf(LocalDateTime.of(2021, Month.NOVEMBER, 16, 10,30)));
+        newPatient.setBirthDate(LocalDate.of(2021, 11, 16));
         newPatient.setGender("Z");
         newPatient.setAddress("address");
         newPatient.setPhone("phone");

@@ -4,12 +4,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.validation.constraints.*;
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Data
 public class PatientDto {
 
-    private int id;
+    private Integer id;
 
     @NotNull
     @NotBlank
@@ -21,7 +21,7 @@ public class PatientDto {
 
     @NotNull
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Timestamp birthDate;
+    private LocalDate birthDate;
 
     @NotNull
     @Size(min = 1, max = 1, message = "Gender should be M or F")

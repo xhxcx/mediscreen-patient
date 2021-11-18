@@ -12,9 +12,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.Month;
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Optional;
 
@@ -34,7 +32,7 @@ public class PatientServiceTest {
         patient.setId(1);
         patient.setFirstName("firstName");
         patient.setLastName("lastName");
-        patient.setBirthDate(Timestamp.valueOf(LocalDateTime.of(2021, Month.NOVEMBER, 15, 10,30)));
+        patient.setBirthDate(LocalDate.of(2021, 11, 15));
         patient.setGender("X");
         patient.setAddress("address");
         patient.setPhone("phone");
@@ -67,7 +65,7 @@ public class PatientServiceTest {
         updatePatient.setId(1);
         updatePatient.setFirstName("firstName");
         updatePatient.setLastName("lastName");
-        updatePatient.setBirthDate(Timestamp.valueOf(LocalDateTime.of(2021, Month.NOVEMBER, 15, 10,30)));
+        updatePatient.setBirthDate(LocalDate.of(2021, 11, 15));
         updatePatient.setGender("X");
         updatePatient.setAddress("address");
         updatePatient.setPhone("updated phone");
@@ -76,6 +74,6 @@ public class PatientServiceTest {
         PatientDto resultPatientDto = patientService.savePatient(PatientMapper.INSTANCE.mapToDto(updatePatient));
 
         Assert.assertEquals("updated phone", resultPatientDto.getPhone());
-        Assert.assertEquals(patient.getId(), resultPatientDto.getId());
+        Assert.assertEquals(patient.getId(), Optional.ofNullable(resultPatientDto.getId()));
     }
 }

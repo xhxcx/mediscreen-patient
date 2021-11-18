@@ -4,7 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -24,7 +24,7 @@ public class Patient {
     private String lastName;
 
     @NotNull
-    private Timestamp birthDate;
+    private LocalDate birthDate;
 
     @NotNull
     @Size(min = 1, max = 1, message = "Gender should be M or F")
