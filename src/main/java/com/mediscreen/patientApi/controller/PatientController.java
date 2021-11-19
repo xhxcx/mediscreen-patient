@@ -41,8 +41,8 @@ public class PatientController {
 
     @ApiOperation(value = "update a patient")
     @PutMapping(value = "/{id}")
-    public ResponseEntity<PatientDto> updatePatient(@Valid @RequestBody PatientDto patientDto){
-        LOGGER.info("PUT /updatePatient patientId = " + patientDto.getId());
+    public ResponseEntity<PatientDto> updatePatient(@PathVariable("id") int id, @Valid @RequestBody PatientDto patientDto){
+        LOGGER.info("PUT /updatePatient patientId = " + id);
         return new ResponseEntity<>(patientService.savePatient(patientDto), HttpStatus.OK);
     }
 
