@@ -22,7 +22,6 @@ public class PatientServiceImpl implements PatientService{
 
     @Override
     public PatientDto getPatientById(int patientId) {
-        //TODO exception to handle ou le orElse fait le job ?
         return PatientMapper.INSTANCE.mapToDto(patientRepository.findById(patientId).orElse(null));
     }
 

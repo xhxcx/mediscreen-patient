@@ -74,6 +74,5 @@ public class PatientServiceTest {
         PatientDto resultPatientDto = patientService.savePatient(PatientMapper.INSTANCE.mapToDto(updatePatient));
 
         Assert.assertEquals("updated phone", resultPatientDto.getPhone());
-        Assert.assertEquals(patient.getId(), Optional.ofNullable(resultPatientDto.getId()));
     }
 }
