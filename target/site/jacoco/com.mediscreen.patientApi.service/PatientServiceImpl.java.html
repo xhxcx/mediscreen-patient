@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PatientServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">patientApi</a> &gt; <a href="index.source.html" class="el_package">com.mediscreen.patientApi.service</a> &gt; <span class="el_source">PatientServiceImpl.java</span></div><h1>PatientServiceImpl.java</h1><pre class="source lang-java linenums">package com.mediscreen.patientApi.service;
+
+import com.mediscreen.patientApi.model.Patient;
+import com.mediscreen.patientApi.model.PatientDto;
+import com.mediscreen.patientApi.model.PatientMapper;
+import com.mediscreen.patientApi.repository.PatientRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.validation.Valid;
+import java.util.List;
+
+@Service
+<span class="nc" id="L14">public class PatientServiceImpl implements PatientService{</span>
+    @Autowired
+    private PatientRepository patientRepository;
+
+    @Override
+    public List&lt;PatientDto&gt; getAllPatients() {
+<span class="nc" id="L20">        return PatientMapper.INSTANCE.mapListToDto(patientRepository.findAll());</span>
+    }
+
+    @Override
+    public PatientDto getPatientById(int patientId) {
+<span class="nc" id="L25">        return PatientMapper.INSTANCE.mapToDto(patientRepository.findById(patientId).orElse(null));</span>
+    }
+
+    @Override
+    public PatientDto savePatient(@Valid PatientDto patientDto) {
+<span class="nc" id="L30">        Patient patientToUpdate = PatientMapper.INSTANCE.mapToEntity(patientDto);</span>
+<span class="nc" id="L31">        return PatientMapper.INSTANCE.mapToDto(patientRepository.save(patientToUpdate));</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

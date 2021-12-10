@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PatientController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">patientApi</a> &gt; <a href="index.source.html" class="el_package">com.mediscreen.patientApi.controller</a> &gt; <span class="el_source">PatientController.java</span></div><h1>PatientController.java</h1><pre class="source lang-java linenums">package com.mediscreen.patientApi.controller;
+
+import com.mediscreen.patientApi.model.PatientDto;
+import com.mediscreen.patientApi.service.PatientService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
+
+@Controller
+@Api(&quot;API to manage patient personnal informations&quot;)
+<span class="fc" id="L20">public class PatientController {</span>
+
+<span class="fc" id="L22">    private final static Logger LOGGER = LoggerFactory.getLogger(PatientController.class);</span>
+
+    @Autowired
+    private PatientService patientService;
+
+    @ApiOperation(value = &quot;get all patient as a list of patient&quot;)
+    @GetMapping(&quot;/&quot;)
+    public ResponseEntity&lt;List&lt;PatientDto&gt;&gt; getAll(){
+<span class="nc" id="L30">        LOGGER.info(&quot;GET /getAll&quot;);</span>
+<span class="nc" id="L31">        return new ResponseEntity&lt;&gt;(patientService.getAllPatients(), HttpStatus.OK);</span>
+    }
+
+    @ApiOperation(value = &quot;find a patient with its id&quot;)
+    @GetMapping(value = &quot;/{id}&quot;)
+    public ResponseEntity&lt;PatientDto&gt; findPatient(@PathVariable(&quot;id&quot;) int id) {
+<span class="nc" id="L37">        LOGGER.info(&quot;GET /findPatient patientId = &quot; + id);</span>
+<span class="nc" id="L38">        PatientDto patientDto = patientService.getPatientById(id);</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">        return patientDto != null ? new ResponseEntity&lt;&gt;(patientDto, HttpStatus.OK) : new ResponseEntity&lt;&gt;(HttpStatus.NOT_FOUND);</span>
+    }
+
+    @ApiOperation(value = &quot;update a patient&quot;)
+    @PutMapping(value = &quot;/{id}&quot;)
+    public ResponseEntity&lt;PatientDto&gt; updatePatient(@PathVariable(&quot;id&quot;) int id, @Valid @RequestBody PatientDto patientDto){
+<span class="nc" id="L45">        LOGGER.info(&quot;PUT /updatePatient patientId = &quot; + id);</span>
+<span class="nc" id="L46">        return new ResponseEntity&lt;&gt;(patientService.savePatient(patientDto), HttpStatus.OK);</span>
+    }
+
+    @ApiOperation(value = &quot;create a new patient&quot;)
+    @PostMapping(value = &quot;/&quot;)
+    public ResponseEntity&lt;PatientDto&gt; createPatient(@Valid @RequestBody PatientDto patientDto){
+<span class="nc" id="L52">        LOGGER.info(&quot;POST /createPatient patient full name = &quot; + patientDto.getFirstName() + &quot; - &quot; + patientDto.getLastName());</span>
+<span class="nc" id="L53">        return new ResponseEntity&lt;&gt;(patientService.savePatient(patientDto), HttpStatus.CREATED);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
